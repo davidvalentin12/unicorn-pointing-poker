@@ -1,0 +1,38 @@
+{
+  "name": "unicorn-pointing-poker",
+  "license": "MIT",
+  "version": "0.0.1",
+  "description": "Module for a pointing poker app",
+  "main": [
+    "./dist/unicorn-pointing-poker.js",
+    "./dist/unicorn-pointing-poker.templates.js",
+    "./dist/css/styles.css",
+    "./dist/images/ring-alt.gif"
+  ],
+  "authors": [
+    "David Möhring <davidvalentinsemail@gmail.com>"
+  ],
+  "keywords": [
+    "unicorn",
+    "pointing poker"
+  ],
+  "ignore": [
+    "lang",
+    "src/*",
+    "test",
+    "_data",
+    "Gulpfile.js",
+    "gulpConfig.json",
+    "index.html",
+    "node_modules",
+    "bower_components",
+    "karma.conf.js"
+  ],
+  "dependencies": {
+    "angular": "~1.5",
+    "font-awesome": "~4.5.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.5"
+  }
+}
