@@ -9,13 +9,12 @@
    *
    */
   angular.module(
-      'elseis.playFilter',
+      'pointingPoker',
 
       // DEPENDENCIES
       [
-
-        'dvm.templates',
-          'restangular'
+        'firebase'
+        //'dvm.templates'
       ]);
 
 }());

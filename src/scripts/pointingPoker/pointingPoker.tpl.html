@@ -1,0 +1,14 @@
+pointing poker
+<br>
+
+<button ng-click="pointingPokerCtrl.generateRandomRoomNumber()">Create Room</button>
+<input type="number" ng-model="pointingPokerCtrl.roomNumber">
+<button ng-click="pointingPokerCtrl.joinRoom(pointingPokerCtrl.roomNumber)">Join Room</button>
+<br>
+<input type="text" ng-model="pointingPokerCtrl.userName">
+<button ng-click="pointingPokerCtrl.signIn(pointingPokerCtrl.userName)">SignIn</button>
+<button ng-click="pointingPokerCtrl.signOut()">SignOut</button>
+<br>
+<ul>
+    <li ng-repeat="user in pointingPokerCtrl.room.users">{{user}}</li>
+</ul>

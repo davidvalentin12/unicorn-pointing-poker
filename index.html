@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html ng-app="elseis.playFilter">
+<html ng-app="pointingPoker">
 <head>
-    <title>Elseis Play Filter</title>
+    <title>Pointing Poker</title>
 
     <!-- ################################
    ### [BEGIN] CSS DEPENDENCIES ###
@@ -19,16 +19,23 @@
 </head>
 <body ng-controller="TestCtrl as test" >
 <!-- Example Usage -->
-<unicorn-poiting-poker></unicorn-poiting-poker>
+<pointing-poker></pointing-poker>
 
 <!-- ###############################
      ### [BEGIN] JS DEPENDENCIES ###
      ############################### -->
 
 <!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/firebase/firebase.js"></script>
+<script src="bower_components/angular-mocks/angular-mocks.js"></script>
+<script src="bower_components/angularfire/dist/angularfire.js"></script>
 <!-- endinject -->
 
 <!-- inject:js -->
+<script src="src/scripts/app.js"></script>
+<script src="src/scripts/pointingPoker/pointingPoker.component.js"></script>
+<script src="src/scripts/config/firebasePointingPoker.service.js"></script>
 <!-- endinject -->
 
 <!-- #############################
@@ -36,7 +43,7 @@
      ############################# -->
 
 <script type="text/javascript">
-    angular.module('poitingPoker')
+    angular.module('pointingPoker')
             .controller('TestCtrl', function($scope) {
                 var self = this;
 
