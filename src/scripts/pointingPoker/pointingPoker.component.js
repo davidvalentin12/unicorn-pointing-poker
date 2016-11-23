@@ -22,7 +22,7 @@
    * @description
    *
    */
-  function pointingPokerCtrl( firebase, firebasePointingPokerService) {
+  function pointingPokerCtrl( firebase,$window,  firebasePointingPokerService) {
 
     var self = this;
     self.user = {};
@@ -42,24 +42,27 @@
     self.$onInit = function $onInit() {
 
       firebasePointingPokerService.initFirebaseConfig();
-
+      $window.onbeforeunload = self.signOut();
     };
 
     function joinRoom(number) {
       self.selectedRoom = number;
-       firebasePointingPokerService.getRoom(number).then(function(value){
-         self.room = value;
-         console.log(value);
+       firebasePointingPokerService.getRoom(number).then(function(roomObj){
+         self.room = roomObj;
+         console.log(self.room);
        })
-
     }
 
     function signIn(userName) {
-      firebasePointingPokerService.createUser(userName, self.room.$id);
+      firebasePointingPokerService.createUser(userName, self.room).then(function(userObj){
+        self.user = userObj;
+        console.log(self.user);
+      });
+
     }
 
     function signOut(){
-      firebasePointingPokerService.removeUser();
+      firebasePointingPokerService.removeUser(self.user, self.room);
     }
 
     

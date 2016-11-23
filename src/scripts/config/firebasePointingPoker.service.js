@@ -35,21 +35,40 @@
             var sessionsRef = firebase.database().ref().child('rooms/' + roomNumber);
             var obj = $firebaseObject(sessionsRef);
             obj.$loaded().then(function() {
-              angular.forEach(obj, function(value, key) {
-                console.log(key, value);
-              });
               deferred.resolve(obj);
             });
             return deferred.promise;
           }
 
 
-          function removeUser(userName) {
+          function removeUser(user, room) {
+            if (user.$id && room.$id) {
+              var userRef = firebase.database().ref().child('rooms/' + room.$id + '/users/'+user.$id);
+              var obj = $firebaseObject(userRef);
+              obj.$remove().then(function(ref) {
+                console.log('user removed')
+              }, function(error) {
+                console.log("Removing Error:", error);
+              });
+            }
+          }
+
+          function createUser(userName, room) {
+            var deferred = $q.defer();
+            var userRef = firebase.database().ref().child('rooms/' + room.$id + '/users/' + userName);
+            var obj = $firebaseObject(userRef);
+            _addAndSaveBasicUserStructure(obj, userName)
+            obj.$loaded().then(function() {
+              deferred.resolve(obj);
+            });
+            return deferred.promise;
 
           }
 
-          function createUser(userName, roomNumber){
-            firebase.database().ref().child('rooms/' + roomNumber + '/'+userName);
+          function _addAndSaveBasicUserStructure(obj, userName){
+            obj.user = userName;
+            obj.vote = null;
+            obj.$save();
           }
 
 
