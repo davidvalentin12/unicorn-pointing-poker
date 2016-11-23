@@ -1,14 +1,47 @@
-pointing poker
+<header class="slds-global-header_container">
+    <div class="slds-global-header slds-grid ">
+        <div class="slds-order--2 slds-medium-order--3 slds-align--absolute-center">
+            UNICORN POINTING POKER
+        </div>
+        <div class="slds-order--1 slds-medium-order--1 ">
+            <div class="slds-global-header__item">
+                <div class="slds-global-header__logo">
+                    <img src="/src/images/uni_logo.jpg" alt=""/>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 <br>
+<main class="slds-m-top--xx-large  slds-grid slds-size--2-of-3 slds-grid--align-center">
+    <div class="room-selection" ng-show="!pointingPokerCtrl.room.$id">
+        <div class="slds-medium-order--1"></div>
 
-<button ng-click="pointingPokerCtrl.generateRandomRoomNumber()">Create Room</button>
-<input type="number" ng-model="pointingPokerCtrl.roomNumber">
-<button ng-click="pointingPokerCtrl.joinRoom(pointingPokerCtrl.roomNumber)">Join Room</button>
-<br>
-<input type="text" ng-model="pointingPokerCtrl.userName">
-<button ng-click="pointingPokerCtrl.signIn(pointingPokerCtrl.userName)">SignIn</button>
-<button ng-click="pointingPokerCtrl.signOut()">SignOut</button>
-<br>
-<ul>
-    <li ng-repeat="user in pointingPokerCtrl.room.users">{{user}}</li>
-</ul>
+        <button ng-click="pointingPokerCtrl.generateRandomRoomNumber()" class="create-room-btn slds-button slds-button--neutral">Create Room</button>
+        <input  ng-model="pointingPokerCtrl.roomNumber" class="slds-input room-number-input">
+        <button ng-click="pointingPokerCtrl.joinRoom(pointingPokerCtrl.roomNumber)" class="slds-button slds-button--neutral join-room-btn">Join Room</button>
+    </div>
+
+
+    <div class="user-selection" ng-show="pointingPokerCtrl.room.$id && !pointingPokerCtrl.user.$id">
+        <label> Room: {{pointingPokerCtrl.room.$id}}</label>
+        <input type="text" ng-model="pointingPokerCtrl.userName">
+        <button ng-click="pointingPokerCtrl.signIn(pointingPokerCtrl.userName)">SignIn</button>
+        <button ng-click="pointingPokerCtrl.signOut()">SignOut</button>
+    </div>
+
+
+    <div class="pointing-poker" ng-if="pointingPokerCtrl.room.$id && pointingPokerCtrl.user.$id">
+        <ul>
+            <li ng-repeat="user in pointingPokerCtrl.room.users"><label>User: {{user.user}}</label> --> <label
+                    ng-hide="!pointingPokerCtrl.room.votesShown && user.user!=pointingPokerCtrl.user.$id">Vote:
+                {{user.vote}}</label></li>
+        </ul>
+        <br>
+        <button ng-click="pointingPokerCtrl.vote(pointingPokerCtrl.user, value)"
+                ng-repeat="value in pointingPokerCtrl.pointingValues">{{value}}
+        </button>
+        <br>
+        <button ng-click=" pointingPokerCtrl.toggleVotes()">Show//Hide Votes</button>
+    </div>
+</main>

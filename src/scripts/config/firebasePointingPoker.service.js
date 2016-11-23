@@ -19,6 +19,8 @@
           self.getRoom = getRoom;
           self.removeUser = removeUser;
           self.createUser = createUser;
+          self.userVote = userVote;
+          self.toggleVotesShown = toggleVotesShown;
 
           function initFirebaseConfig() {
             var config = {
@@ -30,16 +32,26 @@
             firebase.initializeApp(config);
           }
 
+          function toggleVotesShown(room){
+            room.votesShown = !room.votesShown;
+            room.$save();
+          }
+
+          function userVote(user, vote){
+            user.vote = vote;
+            user.$save();
+          }
+
           function getRoom(roomNumber) {
             var deferred = $q.defer();
             var sessionsRef = firebase.database().ref().child('rooms/' + roomNumber);
             var obj = $firebaseObject(sessionsRef);
+
             obj.$loaded().then(function() {
               deferred.resolve(obj);
             });
             return deferred.promise;
           }
-
 
           function removeUser(user, room) {
             if (user.$id && room.$id) {
