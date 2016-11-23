@@ -13,7 +13,8 @@
 
       // DEPENDENCIES
       [
-        'firebase'
+        'firebase',
+          'ui.router'
         //'dvm.templates'
       ]);
 

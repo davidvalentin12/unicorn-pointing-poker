@@ -1,2 +1,5 @@
 pointing-poker .room-selection .create-room-btn {
   float: right; }
+
+pointing-poker .overview {
+  padding-left: 10px; }

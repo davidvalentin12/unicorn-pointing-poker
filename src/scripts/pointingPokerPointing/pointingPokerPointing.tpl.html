@@ -1,0 +1,107 @@
+<!-- POINTING POKER -->
+
+<div class="buttons-wrapper slds-m-vertical--medium">
+    <button ng-click=" pointingPokerPointingCtrl.toggleVotes() "
+            class="slds-button slds-size--1-of-3  slds-button--neutral"
+    >
+        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--hint"
+             ng-hide="pointingPokerPointingCtrl.room.votesShown">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#preview"></use>
+        </svg>
+        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--hint"
+             ng-hide="!pointingPokerPointingCtrl.room.votesShown">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+        </svg>
+
+
+        <label ng-bind="pointingPokerPointingCtrl.room.votesShown ? 'Hide Votes' : 'Show Votes' "></label>
+
+    </button>
+
+
+    <button ng-click=" pointingPokerPointingCtrl.resetVotes() "
+            class="slds-button slds-size--1-of-3  slds-button--neutral"
+    >
+        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--hint">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#refresh"></use>
+        </svg>
+        <label ng-bind="'Reset Votes'"></label>
+
+    </button>
+
+</div>
+
+<div class="pointing-values-wrapper slds-m-vertical--medium ">
+    <button ng-click="pointingPokerPointingCtrl.vote(pointingPokerPointingCtrl.user, value)"
+            ng-repeat="value in pointingPokerPointingCtrl.pointingValues"
+            class="slds-button slds-button--neutral">{{value}}
+    </button>
+    <button class="slds-button slds-button--neutral" title="settings"
+            ng-click="pointingPokerPointingCtrl.vote(pointingPokerPointingCtrl.user, 'coffee')">
+        <svg aria-hidden="true" class="slds-button__icon">
+            <use xlink:href="/assets/icons/custom-sprite/svg/symbols.svg#custom65"></use>
+        </svg>
+        <span class="slds-assistive-text">Settings</span>
+    </button>
+</div>
+<div class="votes-table  slds-size--1-of-1 slds-m-top--small">
+    <table class="slds-table slds-table--bordered slds-table--fixed-layout" role="grid">
+        <thead>
+        <tr class="slds-text-title--caps">
+            <th class="slds-cell-shrink" scope="col">
+                <label class="slds-checkbox">
+                    <input type="checkbox" name="options"/>
+                </label>
+            </th>
+            <th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Unicorn">
+                <a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">
+                    <span class="slds-truncate" title="Opportunity Name">Unicorn</span>
+                </a>
+            </th>
+            <th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Unicorn Points">
+                <a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">
+                    <span class="slds-truncate" title="Account Name">Unicorn Points</span>
+                </a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <tr class="slds-hint-parent" ng-repeat="user in pointingPokerPointingCtrl.room.users">
+            <td role="gridcell" class="slds-cell-shrink">
+                    <span class="slds-icon_container  checked-icon slds-icon-standard-account"
+                          title="description of icon when needed" ng-if="user.vote">
+                            <svg aria-hidden="true" class="slds-icon">
+                                <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#task2"></use>
+                            </svg>
+                        <span class="slds-assistive-text">Description of icon</span>
+                    </span>
+            </td>
+            <th scope="row" data-label="Unicorn">
+                <div class="slds-truncate" title="Unicorn">{{user.user}}</div>
+            </th>
+            <td role="gridcell" data-label="Unicorn Points">
+                <div class="slds-truncate" title="Unicorn Points"
+                     ng-hide="!pointingPokerPointingCtrl.room.votesShown && user.user!=pointingPokerPointingCtrl.user.$id"
+                     ng-show="user.vote!='coffee'">
+
+                    {{user.vote}}
+                </div>
+                <div ng-show="user.vote=='coffee'">
+                    <svg aria-hidden="true" class="slds-button__icon">
+                        <use xlink:href="/assets/icons/custom-sprite/svg/symbols.svg#custom65"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Settings</span>
+                </div>
+            </td>
+        </tr>
+
+        </tbody>
+
+
+    </table>
+</div>
+
+
+

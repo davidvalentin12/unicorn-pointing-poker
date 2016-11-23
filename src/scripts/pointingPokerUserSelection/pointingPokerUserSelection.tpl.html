@@ -1,0 +1,15 @@
+<!-- USER SELECTION -->
+
+    <h3 class="slds-text-heading--small">Insert your unicorn name:</h3>
+
+    <div class="join-room-wrapper slds-grid slds-grid--pull-padded-medium slds-size--1-of-1">
+        <input type="text"
+               ng-model="pointingPokerUserSelectionCtrl.userName"
+               class="slds-input room-number-input slds-size--1-of-2"
+               placeholder="Unicorn name">
+        <button ng-click="pointingPokerUserSelectionCtrl.signIn(pointingPokerUserSelectionCtrl.userName)"
+                class="slds-button slds-size--1-of-2 slds-button--neutral login-btn ">
+            SignIn
+        </button>
+
+    </div>

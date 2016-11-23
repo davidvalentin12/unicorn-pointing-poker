@@ -20,7 +20,17 @@
           self.removeUser = removeUser;
           self.createUser = createUser;
           self.userVote = userVote;
+          self.resetVotes = resetVotes;
           self.toggleVotesShown = toggleVotesShown;
+
+
+          function resetVotes(room) {
+            angular.forEach(room.users, function(user) {
+              user.vote = null;
+            });
+            room.votesShown = false;
+            room.$save();
+          }
 
           function initFirebaseConfig() {
             var config = {
@@ -32,12 +42,12 @@
             firebase.initializeApp(config);
           }
 
-          function toggleVotesShown(room){
+          function toggleVotesShown(room) {
             room.votesShown = !room.votesShown;
             room.$save();
           }
 
-          function userVote(user, vote){
+          function userVote(user, vote) {
             user.vote = vote;
             user.$save();
           }
@@ -46,7 +56,6 @@
             var deferred = $q.defer();
             var sessionsRef = firebase.database().ref().child('rooms/' + roomNumber);
             var obj = $firebaseObject(sessionsRef);
-
             obj.$loaded().then(function() {
               deferred.resolve(obj);
             });
@@ -55,7 +64,7 @@
 
           function removeUser(user, room) {
             if (user.$id && room.$id) {
-              var userRef = firebase.database().ref().child('rooms/' + room.$id + '/users/'+user.$id);
+              var userRef = firebase.database().ref().child('rooms/' + room.$id + '/users/' + user.$id);
               var obj = $firebaseObject(userRef);
               obj.$remove().then(function(ref) {
                 console.log('user removed')
@@ -77,7 +86,7 @@
 
           }
 
-          function _addAndSaveBasicUserStructure(obj, userName){
+          function _addAndSaveBasicUserStructure(obj, userName) {
             obj.user = userName;
             obj.vote = null;
             obj.$save();

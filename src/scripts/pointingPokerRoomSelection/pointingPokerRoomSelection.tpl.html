@@ -1,0 +1,15 @@
+<!-- ROOM SELECTION -->
+    <h3 class="slds-text-heading--small">Select a room:</h3>
+
+    <div class="join-room-wrapper slds-grid  slds-size--1-of-1">
+        <button ng-click="pointingPokerRoomSelectionCtrl.generateRandomRoomNumber()"
+                class="create-room-btn slds-button slds-size--1-of-3 slds-button--neutral ">Create Room
+        </button>
+        <input ng-model="pointingPokerRoomSelectionCtrl.roomNumber"
+               class="slds-input room-number-input slds-size--1-of-3"
+               placeholder="Room ID">
+        <button ng-click="pointingPokerRoomSelectionCtrl.joinRoom(pointingPokerRoomSelectionCtrl.roomNumber)"
+
+                class="slds-button slds-button--neutral join-room-btn slds-size--1-of-3">Join Room
+        </button>
+    </div>

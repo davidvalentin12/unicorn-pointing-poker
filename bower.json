@@ -6,7 +6,8 @@
   "main": [
     "./dist/pointing-poker.js",
     "./dist/pointing-poker.templates.js",
-    "./dist/css/styles.css"
+    "./dist/css/styles.css",
+    "./dist/images/uni_logo.jpg"
   ],
   "authors": [
     "David Möhring <davidvalentinsemail@gmail.com>"
@@ -31,7 +32,8 @@
     "angular": "~1.5",
     "font-awesome": "~4.5.0",
     "angularfire": "~2.1.0",
-    "firebase": "~3.6.1"
+    "firebase": "~3.6.1",
+    "angular-ui-router": "~0.3.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.5"

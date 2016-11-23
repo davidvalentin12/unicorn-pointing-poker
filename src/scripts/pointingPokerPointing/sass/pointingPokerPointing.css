@@ -1,0 +1,8 @@
+pointing-poker .buttons-wrapper button svg {
+  margin-right: 30px; }
+
+pointing-poker .checked-icon {
+  background-color: #6BBD6E; }
+  pointing-poker .checked-icon svg {
+    width: 20px;
+    height: 20px; }
