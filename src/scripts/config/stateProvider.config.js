@@ -45,9 +45,16 @@
 
         })
   })
-      .run(function($rootScope, $state, $stateParams) {
+      .run(function($rootScope, $state, $stateParams,  $timeout) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+        $timeout(function(){
+          if(!$stateParams.roomNumber){
+             $state.transitionTo('app.join-room');
+          }
+        },500)
+
+
       })
 
 })();

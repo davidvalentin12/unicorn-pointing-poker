@@ -39,8 +39,12 @@
 
     function joinRoom(number) {
       self.selectedRoom = number;
-      
-      $state.transitionTo('app.choose-name', {roomNumber: number});
+
+      if(number!='' && number!=undefined){
+        $state.transitionTo('app.choose-name', {roomNumber: number});
+      }else{
+        alert('You don\'t want to  join that room, trust me, you don\'t :$');
+      }
     }
 
   }

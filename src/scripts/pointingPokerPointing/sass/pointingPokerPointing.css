@@ -1,8 +1,23 @@
 pointing-poker .buttons-wrapper button svg {
   margin-right: 30px; }
 
+pointing-poker .pointing-values-wrapper button {
+  margin-bottom: 5px; }
+  pointing-poker .pointing-values-wrapper button.selected {
+    background-color: #62B7ED;
+    color: white; }
+
 pointing-poker .checked-icon {
   background-color: #6BBD6E; }
   pointing-poker .checked-icon svg {
     width: 20px;
     height: 20px; }
+
+pointing-poker .coffee-icon {
+  width: 20px;
+  height: 20px; }
+
+pointing-poker .votes-table {
+  border: 1px solid #62B7ED;
+  border-top: none;
+  border-bottom: none; }

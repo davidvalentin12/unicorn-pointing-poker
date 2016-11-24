@@ -1,9 +1,8 @@
 <!-- POINTING POKER -->
 
-<div class="buttons-wrapper slds-m-vertical--medium">
+<div class="buttons-wrapper slds-m-vertical--medium slds-grid slds-grid--align-center">
     <button ng-click=" pointingPokerPointingCtrl.toggleVotes() "
-            class="slds-button slds-size--1-of-3  slds-button--neutral"
-    >
+            class="slds-button slds-size--1-of-3  slds-button--neutral">
         <svg aria-hidden="true" class="slds-button__icon slds-button__icon--hint"
              ng-hide="pointingPokerPointingCtrl.room.votesShown">
             <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#preview"></use>
@@ -31,19 +30,22 @@
 
 </div>
 
-<div class="pointing-values-wrapper slds-m-vertical--medium ">
+<div class="pointing-values-wrapper slds-m-vertical--medium slds-grid slds-grid--align-center">
     <button ng-click="pointingPokerPointingCtrl.vote(pointingPokerPointingCtrl.user, value)"
             ng-repeat="value in pointingPokerPointingCtrl.pointingValues"
+            ng-class="{'selected':(value==pointingPokerPointingCtrl.user.vote)}"
             class="slds-button slds-button--neutral">{{value}}
     </button>
     <button class="slds-button slds-button--neutral" title="settings"
-            ng-click="pointingPokerPointingCtrl.vote(pointingPokerPointingCtrl.user, 'coffee')">
-        <svg aria-hidden="true" class="slds-button__icon">
+            ng-click="pointingPokerPointingCtrl.vote(pointingPokerPointingCtrl.user, 'coffee')"
+            ng-class="{'selected':('coffee'==pointingPokerPointingCtrl.user.vote)}">
+        <svg aria-hidden="true" class="slds-button__icon  coffee-icon">
             <use xlink:href="/assets/icons/custom-sprite/svg/symbols.svg#custom65"></use>
         </svg>
         <span class="slds-assistive-text">Settings</span>
     </button>
 </div>
+
 <div class="votes-table  slds-size--1-of-1 slds-m-top--small">
     <table class="slds-table slds-table--bordered slds-table--fixed-layout" role="grid">
         <thead>
@@ -53,12 +55,12 @@
                     <input type="checkbox" name="options"/>
                 </label>
             </th>
-            <th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Unicorn">
+            <th class="slds-is-sortable" scope="col" aria-label="Unicorn">
                 <a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">
                     <span class="slds-truncate" title="Opportunity Name">Unicorn</span>
                 </a>
             </th>
-            <th class="slds-is-sortable slds-is-resizable" scope="col" aria-label="Unicorn Points">
+            <th class="slds-is-sortable" scope="col" aria-label="Unicorn Points">
                 <a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">
                     <span class="slds-truncate" title="Account Name">Unicorn Points</span>
                 </a>
@@ -83,17 +85,19 @@
             </th>
             <td role="gridcell" data-label="Unicorn Points">
                 <div class="slds-truncate" title="Unicorn Points"
-                     ng-hide="!pointingPokerPointingCtrl.room.votesShown && user.user!=pointingPokerPointingCtrl.user.$id"
-                     ng-show="user.vote!='coffee'">
+                     ng-hide="!pointingPokerPointingCtrl.room.votesShown &&
+                     user.user!=pointingPokerPointingCtrl.user.$id">
+                    <label ng-bind="user.vote" ng-show="user.vote!='coffee'">
 
-                    {{user.vote}}
+                    </label>
+                    <div ng-show="user.vote=='coffee'">
+                        <svg aria-hidden="true" class="slds-button__icon coffee-icon">
+                            <use xlink:href="/assets/icons/custom-sprite/svg/symbols.svg#custom65"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Settings</span>
+                    </div>
                 </div>
-                <div ng-show="user.vote=='coffee'">
-                    <svg aria-hidden="true" class="slds-button__icon">
-                        <use xlink:href="/assets/icons/custom-sprite/svg/symbols.svg#custom65"></use>
-                    </svg>
-                    <span class="slds-assistive-text">Settings</span>
-                </div>
+
             </td>
         </tr>
 
@@ -103,5 +107,73 @@
     </table>
 </div>
 
-
+<div class="slds-grid">
+    <div class="slds-tabs--path" role="application">
+        <ul class="slds-tabs--path__nav" role="tablist">
+            <li class="slds-tabs--path__item " role="presentation"
+                ng-click="pointingPokerPointingCtrl.explainStory()"
+                ng-class="{
+                'slds-is-complete':pointingPokerPointingCtrl.room.someoneVoted || pointingPokerPointingCtrl.room.votingInitialized,
+                 'slds-is-current':!pointingPokerPointingCtrl.room.someoneVoted && !pointingPokerPointingCtrl.room.votingInitialized }">
+                <a class="slds-tabs--path__link" id="tabs-path-421" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                        <span class="slds-tabs--path__stage">
+                          <svg aria-hidden="true" class="slds-icon slds-icon--x-small">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                          </svg>
+                          <span class="slds-assistive-text">Stage Complete</span>
+                        </span>
+                    <span class="slds-tabs--path__title">Explain Story</span>
+                </a>
+            </li>
+            <li class="slds-tabs--path__item " role="presentation"
+                ng-click="pointingPokerPointingCtrl.toggleVoting()"
+                ng-class="{
+                'slds-is-current':(pointingPokerPointingCtrl.room.someoneVoted && !pointingPokerPointingCtrl.room.votesShown) ||
+                 (pointingPokerPointingCtrl.room.votingInitialized && !pointingPokerPointingCtrl.room.votesShown),
+                'slds-is-incomplete':!pointingPokerPointingCtrl.room.someoneVoted && !pointingPokerPointingCtrl.room.votingInitialized,
+                 'slds-is-complete': pointingPokerPointingCtrl.room.votesShown && pointingPokerPointingCtrl.room.someoneVoted}">
+                <a class="slds-tabs--path__link" id="tabs-path-422" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                    <span class="slds-tabs--path__stage">
+                      <svg aria-hidden="true" class="slds-icon slds-icon--x-small">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                      </svg>
+                      <span class="slds-assistive-text">Stage Complete</span>
+                    </span>
+                    <span class="slds-tabs--path__title">Vote</span>
+                </a>
+            </li>
+            <li class="slds-tabs--path__item " role="presentation"
+                ng-click="pointingPokerPointingCtrl.agreement()"
+                ng-class="{'slds-is-current':pointingPokerPointingCtrl.room.someoneVoted && pointingPokerPointingCtrl.room.votesShown, 'slds-is-incomplete':!pointingPokerPointingCtrl.room.someoneVoted || !pointingPokerPointingCtrl.room.votesShown}">
+                    <a class="slds-tabs--path__link" id="tabs-path-423" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                    <span class="slds-tabs--path__stage">
+                      <svg aria-hidden="true" class="slds-icon slds-icon--x-small">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                      </svg>
+                    </span>
+                    <span class="slds-tabs--path__title">Agreement</span>
+                </a>
+            </li>
+            <li class="slds-tabs--path__item slds-is-incomplete" role="presentation">
+                <a class="slds-tabs--path__link" id="tabs-path-424" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                     <span class="slds-tabs--path__stage">
+                       <svg aria-hidden="true" class="slds-icon slds-icon--x-small">
+                         <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                       </svg>
+                     </span>
+                    <span class="slds-tabs--path__title">Update Jira</span>
+                </a>
+            </li>
+            <li class="slds-tabs--path__item slds-is-incomplete" role="presentation">
+                <a class="slds-tabs--path__link" id="tabs-path-425" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+          <span class="slds-tabs--path__stage">
+            <svg aria-hidden="true" class="slds-icon slds-icon--x-small">
+              <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+            </svg>
+          </span>
+                    <span class="slds-tabs--path__title">Closed</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 

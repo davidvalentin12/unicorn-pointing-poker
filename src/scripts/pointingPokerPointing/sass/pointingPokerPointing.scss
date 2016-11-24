@@ -1,19 +1,38 @@
-pointing-poker{
+pointing-poker {
   .buttons-wrapper {
-    button{
-      svg{
+    button {
+      svg {
         margin-right: 30px;
       }
     }
   }
 
-  .checked-icon{
-    background-color:#6BBD6E;
-
-
-    svg{
-      width:20px;
-      height:20px;
+  .pointing-values-wrapper {
+    button {
+      margin-bottom:5px;
+      &.selected {
+        background-color: #62B7ED;
+        color: white;
+      }
     }
+  }
+
+  .checked-icon {
+    background-color: #6BBD6E;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .coffee-icon {
+    width: 20px;
+    height: 20px;
+
+  }
+
+  .votes-table {
+    border: 1px solid #62B7ED;
+    border-top: none;
+    border-bottom: none;
   }
 }

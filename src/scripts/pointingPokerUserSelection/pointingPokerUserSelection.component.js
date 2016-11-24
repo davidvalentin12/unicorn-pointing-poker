@@ -31,9 +31,11 @@
     self.signIn = signIn;
     
     function signIn(userName) {
-
-
-      $state.transitionTo('app.pointing', {roomNumber:  $stateParams.roomNumber, userName: userName});
+      if(userName!='' && userName!=undefined){
+        $state.transitionTo('app.pointing', {roomNumber:  $stateParams.roomNumber, userName: userName});
+      }else{
+        alert('That can\'t be your name, don\'t lie to me. pls D:');
+      }
     }
 
   }

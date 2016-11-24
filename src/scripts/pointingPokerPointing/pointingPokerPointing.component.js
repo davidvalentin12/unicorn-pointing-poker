@@ -33,6 +33,9 @@
     self.vote = vote;
     self.toggleVotes = toggleVotes;
     self.resetVotes = resetVotes;
+    self.toggleVoting = toggleVoting;
+    self.agreement =agreement;
+    self.explainStory = explainStory;
 
     function $onInit() {
       $window.onbeforeunload = function() {
@@ -57,16 +60,42 @@
     }
 
     function resetVotes(){
-
       firebasePointingPokerService.resetVotes(self.room);
+      firebasePointingPokerService.toggleVoting(self.room, false);
+      self.room.$save();
     }
 
     function toggleVotes() {
+      firebasePointingPokerService.toggleVoting(self.room, false);
       firebasePointingPokerService.toggleVotesShown(self.room);
+      self.room.$save()
+    }
+
+    function toggleVoting(){
+      firebasePointingPokerService.toggleVotesShown(self.room, false);
+      firebasePointingPokerService.toggleVoting(self.room, true);
+      self.room.$save()
+    }
+
+    function agreement(){
+      if(self.room.someoneVoted){
+        firebasePointingPokerService.toggleVoting(self.room, true);
+        firebasePointingPokerService.toggleVotesShown(self.room, true);
+        self.room.$save()
+      }else{
+        alert('No, no, I\'m sorry to disapoint you but you can\'t get to an agreement without any votes :(')
+      }
+    }
+
+    function explainStory(){
+      firebasePointingPokerService.toggleVotesShown(self.room, false);
+      firebasePointingPokerService.toggleVoting(self.room, false);
+      firebasePointingPokerService.resetVotes(self.room);
+      self.room.$save()
     }
 
     function _init() {
-      if (self.user != undefined) {
+      if (self.user != undefined && self.user!='') {
         self.signOut()
       }
       firebasePointingPokerService.getRoom($stateParams.roomNumber).then(function(roomObj) {

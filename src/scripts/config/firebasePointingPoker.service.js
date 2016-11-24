@@ -21,16 +21,11 @@
           self.createUser = createUser;
           self.userVote = userVote;
           self.resetVotes = resetVotes;
+          self.toggleVoting = toggleVoting;
           self.toggleVotesShown = toggleVotesShown;
 
 
-          function resetVotes(room) {
-            angular.forEach(room.users, function(user) {
-              user.vote = null;
-            });
-            room.votesShown = false;
-            room.$save();
-          }
+
 
           function initFirebaseConfig() {
             var config = {
@@ -42,15 +37,30 @@
             firebase.initializeApp(config);
           }
 
-          function toggleVotesShown(room) {
+          function toggleVotesShown(room, opt_bool) {
             room.votesShown = !room.votesShown;
-            room.$save();
+            if(opt_bool!=undefined){
+              room.votesShown = opt_bool;
+            }
+          }
+          function resetVotes(room) {
+            angular.forEach(room.users, function(user) {
+              user.vote = null;
+            });
+            room.votesShown = false;
+          }
+          function toggleVoting(room, opt_bool){
+            room.votingInitialized = !room.votingInitialized;
+            if(opt_bool!=undefined){
+              room.votingInitialized = opt_bool;
+            }
           }
 
           function userVote(user, vote) {
             user.vote = vote;
             user.$save();
           }
+
 
           function getRoom(roomNumber) {
             var deferred = $q.defer();
@@ -73,6 +83,8 @@
               });
             }
           }
+
+
 
           function createUser(userName, room) {
             var deferred = $q.defer();
