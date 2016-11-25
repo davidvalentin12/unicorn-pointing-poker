@@ -1,0 +1,9 @@
+pointing-poker-chat-message .message-user {
+  float: right; }
+
+pointing-poker-chat-message .chat-message {
+  width: 100%; }
+
+pointing-poker-chat-message .message-info {
+  float: right;
+  font-size: 0.7em; }
