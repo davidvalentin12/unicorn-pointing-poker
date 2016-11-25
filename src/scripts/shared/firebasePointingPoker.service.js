@@ -23,8 +23,7 @@
           self.resetVotes = resetVotes;
           self.toggleVoting = toggleVoting;
           self.toggleVotesShown = toggleVotesShown;
-
-
+          self.sendMessage = sendMessage;
 
 
           function initFirebaseConfig() {
@@ -37,23 +36,41 @@
             firebase.initializeApp(config);
           }
 
+          function sendMessage(room, userName, message){
+            var messageObj = {
+              message: message,
+              userName: userName,
+              timestamp: new Date().getTime()
+            };
+            if(!room.messages){
+              room.messages = [];
+            }
+            room.messages.push(messageObj);
+            return room;
+          }
+
           function toggleVotesShown(room, opt_bool) {
             room.votesShown = !room.votesShown;
-            if(opt_bool!=undefined){
+            if (opt_bool != undefined) {
               room.votesShown = opt_bool;
             }
+            return room;
           }
+
           function resetVotes(room) {
             angular.forEach(room.users, function(user) {
               user.vote = null;
             });
             room.votesShown = false;
+            return room;
           }
-          function toggleVoting(room, opt_bool){
+
+          function toggleVoting(room, opt_bool) {
             room.votingInitialized = !room.votingInitialized;
-            if(opt_bool!=undefined){
+            if (opt_bool != undefined) {
               room.votingInitialized = opt_bool;
             }
+            return room;
           }
 
           function userVote(user, vote) {
@@ -83,7 +100,6 @@
               });
             }
           }
-
 
 
           function createUser(userName, room) {

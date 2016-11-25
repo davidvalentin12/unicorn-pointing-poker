@@ -41,12 +41,12 @@
         self.room = roomObj;
         firebasePointingPokerService.createUser($stateParams.userName, self.room).then(function(userObj) {
           self.user = userObj;
-          _setWatchOnVotesShown();
+          _setWatchOnRoom();
         })
       });
     }
 
-    function _setWatchOnVotesShown(){
+    function _setWatchOnRoom(){
       $rootScope.$watch(function() {
             return self.room;
           },

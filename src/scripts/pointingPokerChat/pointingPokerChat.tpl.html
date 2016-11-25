@@ -1,0 +1,62 @@
+<div class="slds-docked_container">
+    <div role="dialog" aria-labelledby="dialog-heading-id"
+         class="slds-docked-composer slds-grid slds-grid--vertical slds-nowrap"
+         ng-class="{'slds-is-open':pointingPokerChatCtrl.chatVisible}">
+        <header class="slds-docked-composer__header slds-grid slds-grid--align-spread slds-shrink-none">
+            <div class="slds-media slds-media--center">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container unicorn-image-wrapper">
+                        <img class="unicorn-image" src="/src/images/unicorn-image.png"></img>
+                      <span class="slds-assistive-text"></span>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2 id="dialog-heading-id">Unicorn Chat {{pointingPokerChatCtrl.room.$id}} -
+                        {{pointingPokerChatCtrl.user.$id}}</h2>
+                </div>
+            </div>
+            <div class="slds-docked-composer__actions">
+                <button class="slds-button slds-button--icon slds-button--icon-inverse"
+                        title="Minimize window"
+                        ng-click="pointingPokerChatCtrl.toggleChatVisibility()">
+                    <svg aria-hidden="true" class="slds-button__icon">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#minimize_window"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Minimize window</span>
+                </button>
+            </div>
+        </header>
+        <div class="slds-docked-composer__body slds-scrollable--y slds-col slds-grid slds-grid--vertical slds-nowrap slds-size--1-of-1">
+            <pointing-poker-chat-message
+                    ng-repeat="message in pointingPokerChatCtrl.room.messages "
+                    message="message.message"
+                    user="message.userName"
+                    timestamp="message.timestamp"
+                    currentUser="pointingPokerChatCtrl.user.$id">
+            </pointing-poker-chat-message>
+            <div id="go-unicorns">-<br>-</div>
+        </div>
+        <footer class="slds-docked-composer__footer slds-shrink-none">
+            <div ng-show="pointingPokerChatCtrl.user.$id!='undefined'">
+                <div class=" slds-float--left slds-grid slds-size--3-of-4">
+
+                    <div class="slds-form-element slds-grid slds-size--4-of-4">
+                        <textarea id="textarea-input-01" class="slds-textarea"
+                                  ng-model="pointingPokerChatCtrl.currentMessage"
+                                  placeholder="Placeholder Text"
+                                  ng-keyup="$event.keyCode == 13 && pointingPokerChatCtrl.sendMessage(pointingPokerChatCtrl.currentMessage)"></textarea>
+                    </div>
+                </div>
+                <div class="slds-float--right slds-grid slds-grid--align-end slds-size--1-of-4 slds-text-align--right">
+                    <button class="slds-button slds-button--brand slds-size--3-of-4"
+                            ng-click="pointingPokerChatCtrl.sendMessage(pointingPokerChatCtrl.currentMessage)">Send
+                    </button>
+                </div>
+            </div>
+            <div class="slds-m-vertical--medium slds-grid slds-grid--align-center"
+                 ng-show="pointingPokerChatCtrl.user.$id=='undefined'">
+                <label>Join a room! And chat with your team mates!</label>
+            </div>
+        </footer>
+    </div>
+</div>

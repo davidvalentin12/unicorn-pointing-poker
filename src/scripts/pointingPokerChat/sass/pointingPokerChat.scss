@@ -1,0 +1,25 @@
+pointing-poker-chat{
+  .slds-docked-composer{
+    &:hover{
+      .slds-docked-composer__header{
+        background-color: #0070D2;
+      }
+    }
+    .slds-docked-composer__header{
+      background-color: #0070D2;
+    }
+  }
+  .unicorn-image-wrapper{
+    background-color:white;
+    .unicorn-image{
+      width:22px;
+      height:22px;
+    }
+  }
+  #go-unicorns{
+    height:40px;
+    color:transparent;
+
+  }
+
+}
