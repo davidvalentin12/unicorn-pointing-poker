@@ -7,7 +7,9 @@
     "./dist/pointing-poker.js",
     "./dist/pointing-poker.templates.js",
     "./dist/css/styles.css",
-    "./dist/images/uni_logo.jpg"
+    "./dist/images/awesome.jpg",
+    "./dist/images/awesome2.gif",
+    "./dist/images/smile.jpg"
   ],
   "authors": [
     "David Möhring <davidvalentinsemail@gmail.com>"
