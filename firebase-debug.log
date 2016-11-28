@@ -1,0 +1,42 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe D:\Usuarios\davvalen\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase login
+[debug] CLI Version:  3.2.0
+[debug] Platform:     win32
+[debug] Node Version: v4.2.4
+[debug] Time:         Mon Nov 28 2016 17:16:29 GMT+0100 (Hora estándar romance)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[info] Visit this URL on any device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase&response_type=code&state=334307072&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe D:\Usuarios\davvalen\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase login
+[debug] CLI Version:  3.2.0
+[debug] Platform:     win32
+[debug] Node Version: v4.2.4
+[debug] Time:         Mon Nov 28 2016 17:16:59 GMT+0100 (Hora estándar romance)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[info] Visit this URL on any device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase&response_type=code&state=1070317573&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe D:\Usuarios\davvalen\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase login
+[debug] CLI Version:  3.2.0
+[debug] Platform:     win32
+[debug] Node Version: v4.2.4
+[debug] Time:         Mon Nov 28 2016 17:17:54 GMT+0100 (Hora estándar romance)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[info] Visit this URL on any device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase&response_type=code&state=551353918&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token

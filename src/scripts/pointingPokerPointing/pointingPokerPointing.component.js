@@ -56,24 +56,25 @@
     }
 
     function vote(user, vote) {
-      firebasePointingPokerService.userVote(user, vote);
+      self.user = firebasePointingPokerService.userVote(user, vote);
+      self.user.$save();
     }
 
     function resetVotes(){
-      firebasePointingPokerService.resetVotes(self.room);
-      firebasePointingPokerService.toggleVoting(self.room, false);
+       self.room = firebasePointingPokerService.resetVotes(self.room);
+       self.room = firebasePointingPokerService.toggleVoting(self.room, false);
       self.room.$save();
     }
 
     function toggleVotes() {
-      firebasePointingPokerService.toggleVoting(self.room, false);
-      firebasePointingPokerService.toggleVotesShown(self.room);
+       self.room = firebasePointingPokerService.toggleVoting(self.room, false);
+       self.room = firebasePointingPokerService.toggleVotesShown(self.room);
       self.room.$save()
     }
 
     function toggleVoting(){
-      firebasePointingPokerService.toggleVotesShown(self.room, false);
-      firebasePointingPokerService.toggleVoting(self.room, true);
+      self.room = firebasePointingPokerService.toggleVotesShown(self.room, false);
+      self.room = firebasePointingPokerService.toggleVoting(self.room, true);
       self.room.$save()
     }
 
@@ -83,7 +84,7 @@
         firebasePointingPokerService.toggleVotesShown(self.room, true);
         self.room.$save()
       }else{
-        alert('No, no, I\'m sorry to disapoint you but you can\'t get to an agreement without any votes :(')
+        alert('No, no, I\'m sorry to disappoint you but you can\'t get to an agreement without any votes :(')
       }
     }
 

@@ -77,13 +77,28 @@
     }
 
     function _setSomeoneVoted(room, sumary){
-      if(Object.keys(sumary).length>0 && sumary[Object.keys(sumary)[0]].vote != undefined){
+      var somethingVoted = _somethingIsVoted(sumary);
+      if(Object.keys(sumary).length>0 && somethingVoted){
         room.someoneVoted=true;
-        room.$save();
+        if(Object.keys(sumary).length==1 && somethingVoted){
+          room.totalAgreement=true;
+        }else{
+          room.totalAgreement=false;
+        }
       }else{
         room.someoneVoted=false;
-        room.$save()
       }
+      self.room.$save();
+    }
+
+    function _somethingIsVoted(sumary){
+      var somethingIsVoted = false;
+      angular.forEach(sumary, function(value){
+        if(value.vote != undefined){
+          somethingIsVoted = true;
+        }
+      });
+      return somethingIsVoted;
     }
 
 

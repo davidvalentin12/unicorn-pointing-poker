@@ -37,13 +37,12 @@
             ng-class="{'selected':(value==pointingPokerPointingCtrl.user.vote)}"
             class="slds-button slds-button--neutral">{{value}}
     </button>
-    <button class="slds-button slds-button--neutral" title="settings"
+    <button class="slds-button slds-button--neutral" title="Coffee"
             ng-click="pointingPokerPointingCtrl.vote(pointingPokerPointingCtrl.user, 'coffee')"
             ng-class="{'selected':('coffee'==pointingPokerPointingCtrl.user.vote)}">
         <svg aria-hidden="true" class="slds-button__icon  coffee-icon">
             <use xlink:href="/assets/icons/custom-sprite/svg/symbols.svg#custom65"></use>
         </svg>
-        <span class="slds-assistive-text">Settings</span>
     </button>
 </div>
 
@@ -148,7 +147,6 @@
                         <svg aria-hidden="true" class="slds-button__icon coffee-icon">
                             <use xlink:href="/assets/icons/custom-sprite/svg/symbols.svg#custom65"></use>
                         </svg>
-                        <span class="slds-assistive-text">Settings</span>
                     </div>
                 </div>
 

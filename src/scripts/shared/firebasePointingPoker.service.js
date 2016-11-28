@@ -75,7 +75,7 @@
 
           function userVote(user, vote) {
             user.vote = vote;
-            user.$save();
+            return user;
           }
 
 
@@ -111,7 +111,6 @@
               deferred.resolve(obj);
             });
             return deferred.promise;
-
           }
 
           function _addAndSaveBasicUserStructure(obj, userName) {
