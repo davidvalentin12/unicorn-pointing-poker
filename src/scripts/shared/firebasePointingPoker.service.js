@@ -62,6 +62,8 @@
               user.vote = null;
             });
             room.votesShown = false;
+            room.someoneVoted = false;
+            room.totalAgreement=false;
             return room;
           }
 
