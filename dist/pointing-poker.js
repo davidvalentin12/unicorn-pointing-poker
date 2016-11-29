@@ -23,6 +23,18 @@
 (function() {
   'use strict';
 
+  angular.module('pointingPoker').filter('reverse', function() {
+    return function(items) {
+      if(items){
+        return items.slice().reverse();
+      }
+    };
+  });
+
+})();
+(function() {
+  'use strict';
+
   angular.module('pointingPoker').config(["$stateProvider", function($stateProvider) {
 
     $stateProvider
@@ -83,61 +95,6 @@
 (function() {
   'use strict';
 
-  angular.module('pointingPoker').filter('reverse', function() {
-    return function(items) {
-      if(items){
-        return items.slice().reverse();
-      }
-    };
-  });
-
-})();
-(function() {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name pointingPoker.components:elseisPlay
-   * @description
-   *
-   */
-
-  pointingPokerCtrl.$inject = ["firebase", "$window", "firebasePointingPokerService"];
-  angular.module('pointingPoker').component('pointingPoker', {
-        bindings: {},
-        controller: pointingPokerCtrl,
-        controllerAs: 'pointingPokerCtrl',
-        templateUrl: 'src/scripts/pointingPoker/pointingPoker.tpl.html'
-      }
-  );
-
-  /**
-   * @ngdoc controller
-   * @name pointingPoker.controllers:pointingPokerCtrl
-   * @description
-   *
-   */
-  function pointingPokerCtrl( firebase,$window,  firebasePointingPokerService) {
-
-    var self = this;
-
-    /**
-     * @ngdoc method
-     * @name $onInit
-     * @methodOf pointingPoker.controllers:pointingPokerCtrl
-     * @description
-     *
-     */
-    self.$onInit = function $onInit() {
-      firebasePointingPokerService.initFirebaseConfig();
-    };
-
-  }
-})();
-
-(function() {
-  'use strict';
-
   /**
    * @ngdoc directive
    * @name pointingPoker.components:pointingPokerChat
@@ -171,7 +128,10 @@
 
 
     function $onInit() {
-      _init();
+      setTimeout(function(){
+        _init();
+
+      }, 500)
       $rootScope.$watch(function() {
             return $location.path();
           },
@@ -261,6 +221,49 @@
     var self = this;
 
     
+
+  }
+})();
+
+(function() {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name pointingPoker.components:elseisPlay
+   * @description
+   *
+   */
+
+  pointingPokerCtrl.$inject = ["firebase", "$window", "firebasePointingPokerService"];
+  angular.module('pointingPoker').component('pointingPoker', {
+        bindings: {},
+        controller: pointingPokerCtrl,
+        controllerAs: 'pointingPokerCtrl',
+        templateUrl: 'src/scripts/pointingPoker/pointingPoker.tpl.html'
+      }
+  );
+
+  /**
+   * @ngdoc controller
+   * @name pointingPoker.controllers:pointingPokerCtrl
+   * @description
+   *
+   */
+  function pointingPokerCtrl( firebase,$window,  firebasePointingPokerService) {
+
+    var self = this;
+
+    /**
+     * @ngdoc method
+     * @name $onInit
+     * @methodOf pointingPoker.controllers:pointingPokerCtrl
+     * @description
+     *
+     */
+    self.$onInit = function $onInit() {
+      firebasePointingPokerService.initFirebaseConfig();
+    };
 
   }
 })();
@@ -617,6 +620,50 @@
 
 (function() {
   'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name pointingPoker.components:pointingPokerUserSelection
+   * @description
+   *
+   */
+
+  pointingPokerUserSelectionCtrl.$inject = ["$stateParams", "$state", "firebasePointingPokerService"];
+  angular.module('pointingPoker').component('pointingPokerUserSelection', {
+        bindings: {},
+        require: {
+          pointingPokerCtrl: '^pointingPoker'
+        },
+        controller: pointingPokerUserSelectionCtrl,
+        controllerAs: 'pointingPokerUserSelectionCtrl',
+        templateUrl: 'src/scripts/pointingPokerUserSelection/pointingPokerUserSelection.tpl.html'
+      }
+  );
+
+  /**
+   * @ngdoc controller
+   * @name pointingPoker.controllers:pointingPokerUserSelectionCtrl
+   * @description
+   *
+   */
+  function pointingPokerUserSelectionCtrl($stateParams,$state, firebasePointingPokerService) {
+
+    var self = this;
+    self.signIn = signIn;
+    
+    function signIn(userName) {
+      if(userName!='' && userName!=undefined){
+        $state.transitionTo('app.pointing', {roomNumber:  $stateParams.roomNumber, userName: userName});
+      }else{
+        alert('That can\'t be your name, don\'t lie to me. pls D:');
+      }
+    }
+
+  }
+})();
+
+(function() {
+  'use strict';
   angular.module('pointingPoker')
       .provider('firebasePointingPokerService', function() {
 
@@ -745,47 +792,3 @@
       });
 })();
 
-
-(function() {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name pointingPoker.components:pointingPokerUserSelection
-   * @description
-   *
-   */
-
-  pointingPokerUserSelectionCtrl.$inject = ["$stateParams", "$state", "firebasePointingPokerService"];
-  angular.module('pointingPoker').component('pointingPokerUserSelection', {
-        bindings: {},
-        require: {
-          pointingPokerCtrl: '^pointingPoker'
-        },
-        controller: pointingPokerUserSelectionCtrl,
-        controllerAs: 'pointingPokerUserSelectionCtrl',
-        templateUrl: 'src/scripts/pointingPokerUserSelection/pointingPokerUserSelection.tpl.html'
-      }
-  );
-
-  /**
-   * @ngdoc controller
-   * @name pointingPoker.controllers:pointingPokerUserSelectionCtrl
-   * @description
-   *
-   */
-  function pointingPokerUserSelectionCtrl($stateParams,$state, firebasePointingPokerService) {
-
-    var self = this;
-    self.signIn = signIn;
-    
-    function signIn(userName) {
-      if(userName!='' && userName!=undefined){
-        $state.transitionTo('app.pointing', {roomNumber:  $stateParams.roomNumber, userName: userName});
-      }else{
-        alert('That can\'t be your name, don\'t lie to me. pls D:');
-      }
-    }
-
-  }
-})();

@@ -33,7 +33,10 @@
 
 
     function $onInit() {
-      _init();
+      setTimeout(function(){
+        _init();
+
+      }, 500)
       $rootScope.$watch(function() {
             return $location.path();
           },
