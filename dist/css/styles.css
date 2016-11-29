@@ -20009,6 +20009,16 @@ pointing-poker .room-selection .create-room-btn {
 pointing-poker .overview {
   padding-left: 10px; }
 
+pointing-poker-chat-message .message-user {
+  float: right; }
+
+pointing-poker-chat-message .chat-message {
+  width: 100%; }
+
+pointing-poker-chat-message .message-info {
+  float: right;
+  font-size: 0.7em; }
+
 pointing-poker-chat .unicorn-chat {
   bottom: 35px; }
 
@@ -20027,16 +20037,6 @@ pointing-poker-chat .unicorn-image-wrapper {
 pointing-poker-chat #go-unicorns {
   height: 40px;
   color: transparent; }
-
-pointing-poker-chat-message .message-user {
-  float: right; }
-
-pointing-poker-chat-message .chat-message {
-  width: 100%; }
-
-pointing-poker-chat-message .message-info {
-  float: right;
-  font-size: 0.7em; }
 
 pointing-poker-overview .statistics-table {
   border: 1px solid #62B7ED;

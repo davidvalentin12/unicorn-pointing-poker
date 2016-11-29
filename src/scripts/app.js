@@ -15,7 +15,7 @@
       [
         'firebase',
           'ui.router',
-       // 'dvm.templates'
+        'dvm.templates'
       ]);
 
 }());
