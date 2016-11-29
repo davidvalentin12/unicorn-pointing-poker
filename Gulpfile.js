@@ -399,7 +399,7 @@
         }))
         .pipe(ngHtml2Js({
           moduleName: 'dvm.templates',
-          prefix: 'src'
+          prefix: 'src/'
         }))
         .pipe(concat(COMPONENT.name + '.templates.js'))
         .pipe(gulp.dest(CONFIG.DIST_PATH))
