@@ -14,8 +14,8 @@
       // DEPENDENCIES
       [
         'firebase',
-          'ui.router'
-        //'dvm.templates'
+          'ui.router',
+       // 'dvm.templates'
       ]);
 
 }());

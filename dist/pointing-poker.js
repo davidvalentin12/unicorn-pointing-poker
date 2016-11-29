@@ -14,12 +14,72 @@
       // DEPENDENCIES
       [
         'firebase',
-          'ui.router'
-        //'dvm.templates'
+          'ui.router',
+        'dvm.templates'
       ]);
 
 }());
 
+(function() {
+  'use strict';
+
+  angular.module('pointingPoker').config(["$stateProvider", function($stateProvider) {
+
+    $stateProvider
+        .state('app', {
+          abstract: true,
+          url: '',
+
+        })
+        .state('app.join-room', {
+          url: '/',
+          views: {
+            'content@': {
+              template: '<pointing-poker-room-selection></pointing-poker-room-selection>'
+            },
+            'sidebar@': {
+              template: '<pointing-poker-overview></pointing-poker-overview>'
+            }
+          }
+        })
+        .state('app.choose-name', {
+          url: '/:roomNumber',
+          views: {
+            'content@': {
+              template: '<pointing-poker-user-selection></pointing-poker-user-selection>'
+            },
+            'sidebar@': {
+              template: '<pointing-poker-overview></pointing-poker-overview>'
+            }
+          }
+        })
+        .state('app.pointing', {
+          url: '/:roomNumber/:userName',
+
+          views: {
+            'content@': {
+              template: '<pointing-poker-pointing></pointing-poker-pointing>'
+            },
+            'sidebar@': {
+              template: '<pointing-poker-overview></pointing-poker-overview>'
+            }
+          }
+
+        })
+  }])
+      .run(["$rootScope", "$state", "$stateParams", "$timeout", function($rootScope, $state, $stateParams,  $timeout) {
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
+        $timeout(function(){
+          if(!$stateParams.roomNumber){
+             $state.transitionTo('app.join-room');
+          }
+        },500)
+
+
+      }])
+
+})();
 (function() {
   'use strict';
 
@@ -32,49 +92,6 @@
   });
 
 })();
-(function() {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name pointingPoker.components:elseisPlay
-   * @description
-   *
-   */
-
-  pointingPokerCtrl.$inject = ["firebase", "$window", "firebasePointingPokerService"];
-  angular.module('pointingPoker').component('pointingPoker', {
-        bindings: {},
-        controller: pointingPokerCtrl,
-        controllerAs: 'pointingPokerCtrl',
-        templateUrl: 'src/scripts/pointingPoker/pointingPoker.tpl.html'
-      }
-  );
-
-  /**
-   * @ngdoc controller
-   * @name pointingPoker.controllers:pointingPokerCtrl
-   * @description
-   *
-   */
-  function pointingPokerCtrl( firebase,$window,  firebasePointingPokerService) {
-
-    var self = this;
-
-    /**
-     * @ngdoc method
-     * @name $onInit
-     * @methodOf pointingPoker.controllers:pointingPokerCtrl
-     * @description
-     *
-     */
-    self.$onInit = function $onInit() {
-      firebasePointingPokerService.initFirebaseConfig();
-    };
-
-  }
-})();
-
 (function() {
   'use strict';
 
@@ -164,6 +181,49 @@
       $anchorScroll();
       $location.hash('');
     }
+
+  }
+})();
+
+(function() {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name pointingPoker.components:elseisPlay
+   * @description
+   *
+   */
+
+  pointingPokerCtrl.$inject = ["firebase", "$window", "firebasePointingPokerService"];
+  angular.module('pointingPoker').component('pointingPoker', {
+        bindings: {},
+        controller: pointingPokerCtrl,
+        controllerAs: 'pointingPokerCtrl',
+        templateUrl: 'src/scripts/pointingPoker/pointingPoker.tpl.html'
+      }
+  );
+
+  /**
+   * @ngdoc controller
+   * @name pointingPoker.controllers:pointingPokerCtrl
+   * @description
+   *
+   */
+  function pointingPokerCtrl( firebase,$window,  firebasePointingPokerService) {
+
+    var self = this;
+
+    /**
+     * @ngdoc method
+     * @name $onInit
+     * @methodOf pointingPoker.controllers:pointingPokerCtrl
+     * @description
+     *
+     */
+    self.$onInit = function $onInit() {
+      firebasePointingPokerService.initFirebaseConfig();
+    };
 
   }
 })();
@@ -727,64 +787,3 @@
       });
 })();
 
-
-(function() {
-  'use strict';
-
-  angular.module('pointingPoker').config(["$stateProvider", function($stateProvider) {
-
-    $stateProvider
-        .state('app', {
-          abstract: true,
-          url: '',
-
-        })
-        .state('app.join-room', {
-          url: '/',
-          views: {
-            'content@': {
-              template: '<pointing-poker-room-selection></pointing-poker-room-selection>'
-            },
-            'sidebar@': {
-              template: '<pointing-poker-overview></pointing-poker-overview>'
-            }
-          }
-        })
-        .state('app.choose-name', {
-          url: '/:roomNumber',
-          views: {
-            'content@': {
-              template: '<pointing-poker-user-selection></pointing-poker-user-selection>'
-            },
-            'sidebar@': {
-              template: '<pointing-poker-overview></pointing-poker-overview>'
-            }
-          }
-        })
-        .state('app.pointing', {
-          url: '/:roomNumber/:userName',
-
-          views: {
-            'content@': {
-              template: '<pointing-poker-pointing></pointing-poker-pointing>'
-            },
-            'sidebar@': {
-              template: '<pointing-poker-overview></pointing-poker-overview>'
-            }
-          }
-
-        })
-  }])
-      .run(["$rootScope", "$state", "$stateParams", "$timeout", function($rootScope, $state, $stateParams,  $timeout) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-        $timeout(function(){
-          if(!$stateParams.roomNumber){
-             $state.transitionTo('app.join-room');
-          }
-        },500)
-
-
-      }])
-
-})();

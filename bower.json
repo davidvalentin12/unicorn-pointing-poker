@@ -9,7 +9,8 @@
     "./dist/css/styles.css",
     "./dist/images/awesome.jpg",
     "./dist/images/awesome2.gif",
-    "./dist/images/smile.jpg"
+    "./dist/images/smile.jpg",
+    "./dist/images/spin.gif"
   ],
   "authors": [
     "David Möhring <davidvalentinsemail@gmail.com>"
